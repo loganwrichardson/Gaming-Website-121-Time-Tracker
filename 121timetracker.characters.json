@@ -1,0 +1,11 @@
+[{
+  "_id": {
+    "$oid": "6627e20f7ca08ee65e7f8ebe"
+  },
+  "name": "Holovir the Magnificient",
+  "class": "Wizard",
+  "hp": 1,
+  "user": {
+    "$oid": "6627e4a17ca08ee65e7f8ed9"
+  }
+}]
