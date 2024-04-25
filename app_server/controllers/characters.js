@@ -1,6 +1,6 @@
 /* GET Character List */
 const characterlist = (req, res) => {
-    res.render('index', {title: 'Character List'});
+    res.render('character-list', {title: 'Character List'});
 };
 
 /* GET 'Character info' page */

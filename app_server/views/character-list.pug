@@ -1,0 +1,44 @@
+extends layout 
+
+block content
+    .row.banner
+        .col-12
+            h1 1-to-1 Time Tracker
+                small &nbsp; Track your game characters! 
+    .row
+        .col-12.col-md-8
+            .card 
+                .card-block
+                    h4 
+                        a(href="/chatacter/info") Gandalf 
+                        small &nbsp;
+                        span.badge.badge-pill.badge-default.float-right Level 20
+                    p.lockoutStatus LOCKEDOUT -- Fighting Balrog 
+                    P.stats 
+                        span.badge.badge-warning Body (10)
+                        span.badge.badge-warning Mind (16)
+                        span.badge.badge-warning Soul (20)
+            .card
+                .card-block
+                h4 
+                    a(href="/chatacter/info") Optimus Prime
+                    small &nbsp;
+                    span.badge.badge-pill.badge-default.float-right Level 18
+                p.lockoutStatus Available
+                P.stats 
+                    span.badge.badge-warning Body (16)
+                    span.badge.badge-warning Mind (14)
+                    span.badge.badge-warning Soul (10)
+            .card
+                .card-block
+                h4 
+                    a(href="/chatacter/info") Eric Cartman
+                    small &nbsp;
+                    span.badge.badge-pill.badge-default.float-right Level 20
+                p.lockoutStatus Available
+                P.stats 
+                    span.badge.badge-warning Body (05)
+                    span.badge.badge-warning Mind (12)
+                    span.badge.badge-warning Soul (14)
+        .col-12.col-md-4 
+        p.lead 1-to-1 tracker helps you keep track of your game chatacters.
