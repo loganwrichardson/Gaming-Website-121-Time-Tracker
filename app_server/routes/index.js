@@ -5,7 +5,6 @@ const ctrlMain = require('../controllers/main');
 const homepageController = (req, res) => {
   res.render('index', { title: 'Express' });
 };
-
 /* GET homepage. */
 router.get('/', ctrlMain.index);
 
