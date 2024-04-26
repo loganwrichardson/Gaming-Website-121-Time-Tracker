@@ -29,7 +29,7 @@ router
     .get(ctrlLockdowns.lockdownsListByStartTime)
     .post(ctrlLockdowns.lockdownsCreate);
 router
-    .route('/users/:userid/characters/:characterid/lockdowns/:lockdownid')
+    .route('/lockdowns/:lockdownid')
     .get(ctrlLockdowns.lockdownsReadOne)
     .delete(ctrlLockdowns.lockdownsDeleteOne);
 

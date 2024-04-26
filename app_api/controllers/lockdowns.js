@@ -1,18 +1,27 @@
 const mongoose = require('mongoose');
-const users = mongoose.model('User');
+const lockdown = mongoose.model('Lockdown');
 
 const lockdownsCreate = (req, res) => {
-    res
-    .status(200)
-    .json({"status" : "success"});
+    lockdown.create({
+        startDate: req.body.startDate,
+        reason: req.body.reason,
+        endDate: req.body.endDate
+      },
+      (err, lockdown) => {
+        if (err) {
+          res
+            .status(400)
+            .json(err);
+        } else {
+          res
+            .status(201)
+            .json(lockdown);
+        }
+      });
 };
 const lockdownsListByStartTime = (req, res) => {
-    users.aggregate( [
-        //Pick out the characters
-        {
-            $unwind : "$characters"
-        }
-    ] )
+    lockdown.find()
+    .sort({endDate : -1})
     .exec((err, lockdowns) => {
         return (res)
             .status(200)
@@ -20,63 +29,47 @@ const lockdownsListByStartTime = (req, res) => {
     })
 };
 const lockdownsReadOne = (req, res) => {
-    users
-    .findById(req.params.userid)
-    .select('name characters')
-    .exec((err, user) => {
-        if (!user) {
-            return res
-            .status(404)
-            .json({"message": "user not found"});
-        } else if (err) {
-            return res
-            .status(404)
-            .json(err);
-        }
-        if (user.characters && user.characters.length > 0) {
-            const character = user.characters.id(req.params.characterid);
-            if (!character) {
-                return res
-                  .status(404)
-                  .json({"message": "character not found"});
-              } else {
-                if (character.lockdowns && character.lockdowns.length > 0) {
-                    const lockdown = character.lockdowns.id(req.params.lockdownid);
-                    if (!lockdown) {
-                        return res
-                          .status(404)
-                          .json({"message": "lockdown not found"});
-                      } else {
-                        const response = {
-                          user: {
-                            name: user.name,
-                            id: req.params.userid
-                          },
-                          character: {
-                            name: character.name,
-                            id: req.params.characterid
-                          },
-                          lockdown
-                        };
-              
-                        return res
-                          .status(200)
-                          .json(response);
-                      }
-                } else {
-                    return res.status(404).json({"message": "No characters found"})
-                }
-              }
-        } else {
-            return res.status(404).json({"message": "No characters found"})
-        }
-        
+    lockdown
+    .findById(req.params.lockdownid)
+    .exec((err, lockdown) => {
+      if (!lockdown) {
+        return res
+          .status(404)
+          .json({"message": "lockdown not found"});
+      } else if (err) {
+        return res
+          .status(404)
+          .json(err);
+      } else {
+        return res
+          .status(200)
+          .json(lockdown);
+      }
     });
 };
 const lockdownsDeleteOne = (req, res) => {
-    res
-    .status(200)
-    .json({"status" : "success"});
+    const {lockdownid} = req.params;
+    if (lockdownid) {
+      lockdown
+        .findByIdAndRemove(lockdownid)
+        .exec((err, location) => {
+            if (err) {
+              return res
+                .status(404)
+                .json(err);
+            }
+            res
+              .status(204)
+              .json(null);
+          }
+      );
+    } else {
+      res
+        .status(404)
+        .json({
+          "message": "No Lockdown"
+        });
+    }
 };
 
 module.exports = {

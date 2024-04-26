@@ -50,4 +50,5 @@ process.on('SIGTERM', () => {
 connect();
 
 //Require the schemas
-require('./users'); //Should have all of the Schemas we need
+require('./users');
+require('./lockdowns');

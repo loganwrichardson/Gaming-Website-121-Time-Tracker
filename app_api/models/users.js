@@ -2,18 +2,13 @@ const mongoose = require('mongoose');
 const crypto = require('crypto');
 const jwt = require('jsonwebtoken');
 
-//I realized that this would be alot easier if all of the Schemas were in one file
-const lockdownSchema = new mongoose.Schema({
-  reason: {type: String},
-  startDate: {type: Date},
-  endDate: {type: Date}
-});
-
 const characterSchema = new mongoose.Schema({
   name : {type: String},
-  class: {type: String},
+  className : {type: String},
   hp: {type: Number, 'default': 1},
-  lockdowns: [lockdownSchema]
+  //Lockdown doesn't need to be required here, just the id of the object we are looking for
+  //If there is no lockdown, the string would be null.
+  lockdown: {type: String}
 });
 
 const userSchema = new mongoose.Schema({
