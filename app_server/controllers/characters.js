@@ -10,12 +10,12 @@ const characterInfo = (req, res) => {
 
 /* GET 'Add lockdown' page */
 const addLockdown = (req, res) => {
-    res.render('index', {title : 'Add Lockdown'});
+    res.render('character-lockdown-new-form', {title : 'Add Lockdown'});
 };
 
 /* Get 'Add character' page */
 const addCharacter = (req, res) => {
-    res.render('index', {title: 'Add Character'});
+    res.render('character-add-character-form', {title: 'Add Character'});
 };
 
 module.exports = {
