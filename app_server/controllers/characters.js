@@ -8,6 +8,11 @@ const characterInfo = (req, res) => {
     res.render('index', { title: 'Character Info'});
 };
 
+/* GET 'Lockout Calendar' page */
+const lockoutCalendar = (req, res) => {
+    res.render('lockout-calendar', { title: 'Lockout Calendar'});
+};
+
 /* GET 'Add lockdown' page */
 const addLockdown = (req, res) => {
     res.render('character-lockdown-new-form', {title : 'Add Lockdown'});
@@ -18,9 +23,11 @@ const addCharacter = (req, res) => {
     res.render('character-add-character-form', {title: 'Add Character'});
 };
 
+
 module.exports = {
     characterlist,
     characterInfo,
+    lockoutCalendar,
     addLockdown,
     addCharacter
 }

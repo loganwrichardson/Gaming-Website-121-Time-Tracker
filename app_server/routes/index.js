@@ -7,6 +7,7 @@ const ctrlOthers = require('../controllers/others');
 /* Character pages */
 router.get('/', ctrlCharacters.characterlist);
 router.get('/character/info', ctrlCharacters.characterInfo);
+router.get('/character/lockoutcalendar', ctrlCharacters.lockoutCalendar);
 router.get('/character/lockdown/new', ctrlCharacters.addLockdown);
 router.get('/character/addcharacter', ctrlCharacters.addCharacter);
 
