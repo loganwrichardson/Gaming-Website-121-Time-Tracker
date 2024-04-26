@@ -20,17 +20,17 @@ router
     .post(ctrlCharacters.charactersCreate);
 router
     .route('/users/:userid/characters/:characterid')
-    .get(ctrlUsers.usersReadOne)
-    .put(ctrlUsers.usersUpdateOne)
-    .delete(ctrlUsers.usersDeleteOne)
+    .get(ctrlCharacters.charactersReadOne)
+    .put(ctrlCharacters.charactersUpdateOne)
+    .delete(ctrlCharacters.charactersDeleteOne);
 //lockdown
 router
-    .route('/lockdowns')
+    .route('/lockdowns/')
     .get(ctrlLockdowns.lockdownsListByStartTime)
-    .post(ctrlLockdowns.lockdownsCreate)
+    .post(ctrlLockdowns.lockdownsCreate);
 router
-    .route('/lockdowns/:lockdownid')
+    .route('/users/:userid/characters/:characterid/lockdowns/:lockdownid')
     .get(ctrlLockdowns.lockdownsReadOne)
-    .delete(ctrlLockdowns.lockdownsDeleteOne)
+    .delete(ctrlLockdowns.lockdownsDeleteOne);
 
 module.exports = router;

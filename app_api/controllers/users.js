@@ -7,9 +7,23 @@ const usersCreate = (req, res) => {
     .json({"status" : "success"});
 };
 const usersReadOne = (req, res) => {
-    res
-    .status(200)
-    .json({"status" : "success"});
+    users
+      .findById(req.params.userid)
+      .exec((err, user) => {
+        if (!user) {
+          return res
+            .status(404)
+            .json({"message": "user not found"});
+        } else if (err) {
+          return res
+            .status(404)
+            .json(err);
+        } else {
+          return res
+            .status(200)
+            .json(user);
+        }
+      });
 };
 const usersUpdateOne = (req, res) => {
     res
