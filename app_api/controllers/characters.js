@@ -7,7 +7,6 @@ const doAddCharacter = (req, res, user) => {
           .status(404)
           .json({"message": "user not found"});
       } else {
-        //className doesn't work for some reason
         const {name, className, hp, lockdown} = req.body;
         console.log(className);
         user.characters.push({
