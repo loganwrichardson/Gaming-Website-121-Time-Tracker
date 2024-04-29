@@ -76,6 +76,7 @@ legend {
   border-color: #440b53;
 }
 
+
 h4 a, h4 a:hover {
   color: #fff;
 }
@@ -90,6 +91,10 @@ h1 small {
   color: #aaa;
 }
 
+.card-title {
+  color: #aaa
+}
+
 .address {
   margin-bottom: 0.5rem;
 }
@@ -100,6 +105,11 @@ h1 small {
 
 p {
   margin-bottom: 0.65rem;
+  color: #fff
+}
+
+ul {
+  color: #fff
 }
 
 a {
