@@ -5,7 +5,7 @@ const characterlist = (req, res) => {
 
 /* GET 'Character info' page */
 const characterInfo = (req, res) => {
-    res.render('index', { title: 'Character Info'});
+    res.render('character-info', { title: 'Character Info'});
 };
 
 /* GET 'Lockout Calendar' page */
