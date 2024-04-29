@@ -4,7 +4,11 @@ const characterlist = (req, res) => {
         title: 'Character List',
         pageHeader: {
             title: '1 to 1 Time Tracker',
-            strapline: 'Track your game characters!'
+            strapline: 'Track your game characters!',
+        },
+        sidebar: {
+            sidebarLead:'1-to-1 tracker helps you keep track of your game characters.',
+            context: ' No more tracking characters on your own with pesky calendars and notebooks. Let us do the heavy lifiting. The latest inovation in gameplay. Our system will revolutionize your gameplay forever!!!',
         },
         pcList: [{
             name: 'Gandalf',
