@@ -13,8 +13,12 @@ block content
                         h4
                             a(href='/character')= character.name
                             small &nbsp;
-                            span.badge.badge-pill.badge-lockout-available= character.lockoutStatus
-                            span.badge.badge-pill.badge-default.float-right= character.level
+                            if (character.lockoutStatus === 'Available')
+                                span.badge.badge-pill.badge-lockout-available= character.lockoutStatus
+                            else
+                                span.badge.badge-pill.badge-lockout-unavailable= character.lockoutStatus
+                            
+                                span.badge.badge-pill.badge-default.float-right= character.level
                         each stat in character.stats
                             span.badge.badge-warning= stat
         .col-12.col-md-4 

@@ -11,28 +11,16 @@ const characterlist = (req, res) => {
             lockoutStatus: 'Locked Out',
             level: 'Level 20',
             stats: ['Body 10', 'Mind 16', 'Soul 20', 'HP 60'],
-            // body: 'Body 10',
-            // mind: 'Mind 16',
-            // soul: 'Soul 20',
-            // hp: 'HP 60'
         }, {
             name: 'Optimus Prime',
             lockoutStatus: 'Available',
             level: 'Level 18',
             stats: ['Body 16', 'Mind 14', 'Soul 10', 'HP 100'],
-            // body: 'Body 16',
-            // mind: 'Mind 14',
-            // soul: 'Soul 10',
-            // hp: 'HP 100'
         }, {
-            name: 'Eric Carman',
+            name: 'Eric Cartman',
             lockoutStatus: 'Available',
             level: 'Level 08',
             stats: ['Body 05', 'Mind 12', 'Soul 14', 'HP 84'],
-            // body: 'Body 05',
-            // mind: 'Mind 12',
-            // soul: 'Soul 14',
-            // hp: 'HP 84'
         }]
     });
 };
