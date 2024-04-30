@@ -1,10 +1,17 @@
 
 
 const mongoose = require('mongoose');
-const dbURI = 'mongodb://127.0.0.1/121timetracker';     
-mongoose.connect(dbURI, {useNewUrlParser: true});           
+const dbURL = 'mongodb://127.0.0.1/';    
+
+const connect = () => {
+  setTimeout(() => mongoose.connect(dbURL, { useNewUrlParser: true, dbName: '121timetracker' }), 1000);
+}      
+
+//set debugging
+mongoose.set('debug', true);
+
 mongoose.connection.on('connected', () => {              
-  console.log(`Mongoose connected to ${dbURI}`);         
+  console.log(`Mongoose connected to ${dbURL}`);         
 });                                                      
 mongoose.connection.on('error', err => {                 
   console.log(`Mongoose connection error: ${err}`);      
@@ -38,7 +45,10 @@ process.on('SIGTERM', () => {
   gracefulShutdown('Heroku app shutdown', () => {        
     process.exit(0);                                     
   });                                                    
-});                                                      
+});   
+
+connect();
 
 //Require the schemas
-require('./users'); //Should have all of the Schemas we need
+require('./users');
+require('./lockdowns');
