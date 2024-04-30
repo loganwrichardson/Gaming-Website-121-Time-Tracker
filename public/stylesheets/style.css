@@ -103,9 +103,13 @@ h1 small {
   margin-right: 2px;
 }
 
+p.lead {
+  color:#ffff
+}
+
 p {
   margin-bottom: 0.65rem;
-  color: #fff
+  color: #22850e
 }
 
 ul {

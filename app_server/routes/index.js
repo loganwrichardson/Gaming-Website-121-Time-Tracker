@@ -14,8 +14,8 @@ router.get('/character/addcharacter', ctrlCharacters.addCharacter);
 /* Other pages */
 router.get('/about', ctrlOthers.about);
 
-const homepageController = (req, res) => {
-  res.render('index', { title: 'Express' });
-};
+// const homepageController = (req, res) => {
+//   res.render('index', { title: 'Express' });
+// };
 
 module.exports = router;
