@@ -107,6 +107,10 @@ p.lead {
   color:#ffff
 }
 
+p.notes {
+  color: #ffff
+}
+
 p {
   margin-bottom: 0.65rem;
   color: #22850e
