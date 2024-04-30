@@ -9,8 +9,8 @@ legend {
 }
 
 .navbar {
-  background-color: #ad1d28;
-  border-color: #911821;
+  background-color: #5e0910;
+  border-color: #000000;
 }
 
 .navbar-light .navbar-brand {
@@ -32,7 +32,7 @@ legend {
 }
 
 .card {
-  background-color: #469ea8;
+  background-color: #5e0910;
   padding: 1rem;
 }
 
@@ -62,9 +62,20 @@ legend {
 }
 
 .badge-default, .btn-primary {
-  background-color: #ad1d28;
-  border-color: #911821;
+  background-color: #000000;
+  border-color: #000000;
 }
+
+.badge-lockout-available, .btn-primary {
+  background-color: #22850e;
+  border-color: #22850e;
+}
+
+.badge-lockout-unavailable, .btn-primary {
+  background-color: #440b53;
+  border-color: #440b53;
+}
+
 
 h4 a, h4 a:hover {
   color: #fff;
@@ -80,6 +91,10 @@ h1 small {
   color: #aaa;
 }
 
+.card-title {
+  color: rgba(255, 255, 255, 0.8)
+}
+
 .address {
   margin-bottom: 0.5rem;
 }
@@ -88,8 +103,21 @@ h1 small {
   margin-right: 2px;
 }
 
+p.lead {
+  color:#ffff
+}
+
+p.notes {
+  color: #ffff
+}
+
 p {
   margin-bottom: 0.65rem;
+  color: #22850e
+}
+
+ul {
+  color: #fff
 }
 
 a {
@@ -102,6 +130,6 @@ a:hover {
 
 body {
   font-family: "Cabin", Arial, sans-serif;
-  color: #b0db14;
+  color: #22850e;
   background-color: #3d0606;
 }
