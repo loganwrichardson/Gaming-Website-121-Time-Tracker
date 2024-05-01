@@ -13,8 +13,10 @@ block content
           .card.card-primary
             .card-block
               h1.card-title Character Stats
-              each stat in character.stats
-                span.badge.badge-warning= stat
+              span.badge.badge-warning= character.hp 
+              span.badge.badge-warning= character.body 
+              span.badge.badge-warning= character.mind 
+              span.badge.badge-warning= character.spirit
               i.fas.fa-heart
               i.fas.fa-heart
               i.fas.fa-heart
