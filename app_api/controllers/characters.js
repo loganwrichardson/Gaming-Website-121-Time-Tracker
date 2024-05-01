@@ -7,10 +7,11 @@ const doAddCharacter = (req, res, user) => {
           .status(404)
           .json({"message": "user not found"});
       } else {
-        const {name, className, hp, lockdown} = req.body;
+        const {name, className, hp, body, mind, soul, lockdown, abilities, magicItems, notes} = req.body;
         console.log(className);
+        const maxhp = hp;
         user.characters.push({
-            name, className, hp, lockdown
+          name, className, hp, maxhp, body, mind, soul, lockdown, abilities, magicItems, notes
         });
         user.save((err, user) => {
           if (err) {
@@ -142,7 +143,14 @@ const charactersUpdateOne = (req, res) => {
               thisCharacter.name = req.body.name;
               thisCharacter.class = req.body.class;
               thisCharacter.hp = req.body.hp;
+              thisCharacter.maxhp = req.body.maxhp;
+              thisCharacter.body = req.body.body;
+              thisCharacter.mind = req.body.mind;
+              thisCharacter.spirit = req.body.spirit;
               thisCharacter.lockdown = req.body.lockdown;
+              thisCharacter.abilities = req.body.abilities;
+              thisCharacter.magicItems = req.body.magicItems;
+              thisCharacter.notes = req.body.notes;
               user.save((err, user) => {
                 if (err) {
                   res
