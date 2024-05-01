@@ -11,7 +11,7 @@ block content
                 .card 
                     .card-block
                         h4
-                            a(href='/character')= character.name
+                            a(href=`/users/6627e3747ca08ee65e7f8ec5/characters/${character._id}/info`)= character.name
                             small &nbsp;
                             if (character.lockoutStatus === 'Available')
                                 span.badge.badge-pill.badge-lockout-available= character.lockoutStatus
@@ -19,8 +19,10 @@ block content
                                 span.badge.badge-pill.badge-lockout-unavailable= character.lockoutStatus
                             
                             span.badge.badge-pill.badge-default.float-right= character.level
-                        each stat in character.stats
-                            span.badge.badge-warning= stat           
+                        span.badge.badge-warning= character.hp 
+                        span.badge.badge-warning= character.body 
+                        span.badge.badge-warning= character.mind 
+                        span.badge.badge-warning= character.spirit        
         .col-12.col-md-4
             p.lead= sidebar.sidebarLead 
             p= sidebar.context

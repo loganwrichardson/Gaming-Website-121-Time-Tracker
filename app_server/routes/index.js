@@ -5,11 +5,12 @@ const ctrlCharacters = require('../controllers/characters');
 const ctrlOthers = require('../controllers/others');
 
 /* Character pages */
-router.get('/', ctrlCharacters.characterlist);
-router.get('/character/info', ctrlCharacters.characterInfo);
-router.get('/character/lockoutcalendar', ctrlCharacters.lockoutCalendar);
-router.get('/character/lockdown/new', ctrlCharacters.addLockdown);
-router.get('/character/addcharacter', ctrlCharacters.addCharacter);
+//The URL would need to include the user id to get any useful information
+router.get('/users/:userid/characters/', ctrlCharacters.characterlist);
+router.get('/users/:userid/characters/:characterid/info', ctrlCharacters.characterInfo);
+router.get('/lockoutcalendar', ctrlCharacters.lockoutCalendar);
+router.get('/users/:userid/characters/:characterid/lockdown/new', ctrlCharacters.addLockdown);
+router.get('/users/:userid/characters/addcharacter', ctrlCharacters.addCharacter);
 
 /* Other pages */
 router.get('/about', ctrlOthers.about);
