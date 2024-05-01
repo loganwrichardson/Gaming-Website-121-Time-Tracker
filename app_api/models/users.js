@@ -9,7 +9,7 @@ const characterSchema = new mongoose.Schema({
   maxhp: {type: Number, 'default': 1},
   body: {type: Number, 'default': 1},
   mind: {type: Number, 'default': 1},
-  soul : {type: Number, 'default': 1},
+  spirit : {type: Number, 'default': 1},
   //Lockdown doesn't need to be required here, just the id of the object we are looking for
   //If there is no lockdown, the string would be null.
   lockdown: {type: String},
