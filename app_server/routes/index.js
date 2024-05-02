@@ -12,7 +12,10 @@ router
     .post(ctrlCharacters.doAddCharacter);
 router.get('/users/:userid/characters/:characterid/info', ctrlCharacters.characterInfo);
 router.get('/lockoutcalendar', ctrlCharacters.lockoutCalendar);
-router.get('/users/:userid/characters/:characterid/lockdown/new', ctrlCharacters.addLockdown);
+router
+    .route('/users/:userid/lockdown/new')
+    .get(ctrlCharacters.addLockdown)
+    .post(ctrlCharacters.doAddLockdown)
 router.get('/users/:userid/characters/addcharacter', ctrlCharacters.addCharacter);
 
 /* Other pages */
