@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const users = mongoose.model('User');
+const lockdowns = mongoose.model('Lockdown');
 
 const doAddCharacter = (req, res, user) => {
     if (!user) {
@@ -7,10 +8,12 @@ const doAddCharacter = (req, res, user) => {
           .status(404)
           .json({"message": "user not found"});
       } else {
-        const {name, className, hp, lockdown} = req.body;
-        console.log(className);
+        const {name, className, hp, body, mind, soul, lockdown, abilities, magicItems, notes} = req.body;
+        console.log("Name");
+        console.log(name);
+        const maxhp = hp;
         user.characters.push({
-            name, className, hp, lockdown
+          name, className, hp, maxhp, body, mind, soul, lockdown, abilities, magicItems, notes
         });
         user.save((err, user) => {
           if (err) {
@@ -84,29 +87,145 @@ const charactersReadOne = (req, res) => {
         }
         if (user.characters && user.characters.length > 0) {
             const character = user.characters.id(req.params.characterid);
-            if (!character) {
-                return res
-                  .status(404)
-                  .json({"message": "character not found"});
-              } else {
-                const response = {
-                  user: {
-                    name: user.name,
-                    id: req.params.userid
-                  },
-                  character
-                };
-      
-                return res
-                  .status(200)
-                  .json(response);
-              }
+            //request the lockdown directly from the lockdown database
+            lockdowns
+              .findById(character.lockdown)
+              .exec((err, lockdown) => {
+                console.log("LOCKDOWN");
+                console.log(lockdown);
+                if (!character) {
+                    return res
+                      .status(404)
+                      .json({"message": "character not found"});
+                  } else {
+                    const response = {
+                      user: {
+                        name: user.name,
+                        id: req.params.userid
+                      },
+                      character,
+                      lockdown: lockdown
+                    };
+          
+                    return res
+                      .status(200)
+                      .json(response);
+                  }
+              })
         } else {
             return res.status(404).json({"message": "No characters found"})
         }
         
     });
 };
+
+//Used by the controller to go from a name to an id the database can use.
+//Ironically, this uses the database to do this.
+const charactersFindByName = (req, res) => {
+  if (!req.params.userid || !req.params.characterName) {
+    return res
+      .status(404)
+      .json({
+        "message": "Not found, userid and characterid are both required"
+      });
+  }
+  users
+  .findById(req.params.userid)
+  .select('name characters')
+  .exec((err, user) => {
+      if (!user) {
+          return res
+          .status(404)
+          .json({"message": "user not found"});
+      } else if (err) {
+          return res
+          .status(404)
+          .json(err);
+      }
+      //Grab the character by id
+      users
+        .aggregate([
+          {$unwind : {path: "$characters"}},
+          {$project: { _id: 0, 'characters._id': 1, 'characters.name': 1}},
+          {$replaceRoot: {newRoot: "$characters"}},
+          {$match: { name : req.params.characterName}}
+          ])
+        .exec((err, character) => {
+          console.log("Character:", character);
+          if (!character.length) {
+            return res
+              .status(404)
+              .json({"message": "can't find a character by this name"});
+          } else if (err) {
+            return res
+              .status(404)
+              .json({"message": "Something went wrong"});
+          }
+          res
+            .status(200)
+            .json(character[0])
+        })
+  });
+}
+
+const charactersUpdateLockdown = (req, res) => {
+  if (!req.params.userid || !req.params.characterid) {
+      return res
+        .status(404)
+        .json({
+          "message": "Not found, userid and characterid are both required"
+        });
+    }
+    users
+      .findById(req.params.userid)
+      .select('characters')
+      .exec((err, user) => {
+        if (!user) {
+          return res
+            .status(404)
+            .json({
+              "message": "User not found"
+            });
+        } else if (err) {
+          return res
+            .status(400)
+            .json(err);
+        }
+        if (user.characters && user.characters.length > 0) {
+          const thisCharacter = user.characters.id(req.params.characterid);
+          console.log(thisCharacter);
+          if (!thisCharacter) {
+            res
+              .status(404)
+              .json({
+                "message": "Character not found"
+              });
+          } else {
+            console.log("BODY FROM API: ", JSON.stringify(req.body)); 
+            thisCharacter.lockdown = req.body.lockdown;
+            user.save((err, character) => {
+              if (err) {
+                res
+                  .status(404)
+                  .json(err);
+              } else {
+                res
+                  .status(200)
+                  .json(character);
+              }
+            });
+          }
+        } else {
+          res
+            .status(404)
+            .json({
+              "message": "No character to update"
+            });
+        }
+      }
+    );
+};
+
 const charactersUpdateOne = (req, res) => {
     if (!req.params.userid || !req.params.characterid) {
         return res
@@ -142,7 +261,14 @@ const charactersUpdateOne = (req, res) => {
               thisCharacter.name = req.body.name;
               thisCharacter.class = req.body.class;
               thisCharacter.hp = req.body.hp;
+              thisCharacter.maxhp = req.body.maxhp;
+              thisCharacter.body = req.body.body;
+              thisCharacter.mind = req.body.mind;
+              thisCharacter.spirit = req.body.spirit;
               thisCharacter.lockdown = req.body.lockdown;
+              thisCharacter.abilities = req.body.abilities;
+              thisCharacter.magicItems = req.body.magicItems;
+              thisCharacter.notes = req.body.notes;
               user.save((err, user) => {
                 if (err) {
                   res
@@ -217,7 +343,9 @@ const charactersDeleteOne = (req, res) => {
 module.exports = {
     charactersCreate,
     charactersDeleteOne,
+    charactersFindByName,
     charactersGetFromUser,
     charactersReadOne,
-    charactersUpdateOne
+    charactersUpdateOne,
+    charactersUpdateLockdown
 }

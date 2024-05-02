@@ -7,7 +7,7 @@ block content
 
   .row
     .col-12.col-md-8
-      form(action="/character", method="get", role="form")
+      form(action=`/users/6627e3747ca08ee65e7f8ec5/characters/`, method="post", role="form")
         - if (error == "val")
           .alert.alert-danger(role="alert") All fields required, please try again
         .form-group.row
@@ -19,7 +19,31 @@ block content
           .col-12.col-sm-10
             input#name.form-control(name="class")
         .form-group.row
-          label.col-10.col-sm-2.col-form-label(for="review") Flavor Text
+          label.col-10.col-sm-2.col-form-label(for="hp") HP
+          .col-12.col-sm-10
+            input#name.form-control(name="hp")
+        .form-group.row
+          label.col-10.col-sm-2.col-form-label(for="body") Body
+          .col-12.col-sm-10
+            input#name.form-control(name="body")
+        .form-group.row
+          label.col-10.col-sm-2.col-form-label(for="mind") Mind
+          .col-12.col-sm-10
+            input#name.form-control(name="mind")
+        .form-group.row
+          label.col-10.col-sm-2.col-form-label(for="spirit") Spirit
+          .col-12.col-sm-10
+            input#name.form-control(name="spirit")
+        .form-group.row
+          label.col-10.col-sm-2.col-form-label(for="abilities") Abilties
+          .col-12.col-sm-10
+            input#name.form-control(name="abilities")
+        .form-group.row
+          label.col-10.col-sm-2.col-form-label(for="magicItems") Magic Items
+          .col-12.col-sm-10
+            input#name.form-control(name="magicItems")
+        .form-group.row
+          label.col-10.col-sm-2.col-form-label(for="review") Notes
           .col-12.col-sm-10
             textarea#review.form-control(name="flavorText", rows="5")
         button.btn.btn-primary.float-right Add New Character
