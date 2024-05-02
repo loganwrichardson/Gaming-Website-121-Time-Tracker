@@ -151,15 +151,15 @@ const charactersFindByName = (req, res) => {
           {$match: { name : req.params.characterName}}
           ])
         .exec((err, character) => {
-          console.log("found: ", character[0]._id);
-          if (!character) {
+          console.log("Character:", character);
+          if (!character.length) {
             return res
               .status(404)
               .json({"message": "can't find a character by this name"});
           } else if (err) {
             return res
               .status(404)
-              .json(err)
+              .json("No");
           }
           res
             .status(200)

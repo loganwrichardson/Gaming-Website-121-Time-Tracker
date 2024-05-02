@@ -137,47 +137,47 @@ const doAddLockdown = (req, res) => {
     request(                                                  
         requestOptions,
         (err, {statusCode}, body) => {
-        if (statusCode === 200) {  
-                console.log("BODY:", body._id)                           
-                characterId = body._id;
-                console.log(`The id is: ${characterId}`);
-                console.log(`Got the name, giving to API: ${postdata}`);   
-                //insert the characterid, now that we know it
-                postdata.character = characterId;                                          
-                requestOptions = {
-                    url: `${apiOptions.server}${path}`,                     
-                    method: 'POST',                                         
-                    json: postdata                                          
-                };
-                request(                                                  
-                    requestOptions,
-                    (err, {statusCode}, body) => {
-                    if (statusCode === 201) {                            
-                            //Set the lockdown so they match up
-                            requestOptions = {
-                                url: `${apiOptions.server}/api/users/6627e3747ca08ee65e7f8ec5/characters/${characterId}/newlockdown`,                     
-                                method: 'PUT',                                         
-                                json: {lockdown: body._id}                                          
-                            };
-                            console.log(JSON.stringify(requestOptions)); 
-                            request(
-                                requestOptions,
-                                (err, {statusCode}, body) => {
-                                    if (statusCode === 200) {
-                                        res.redirect(`/users/${userid}/characters/`); 
-                                    } else if (err) {
-                                        res
-                                            .status(200)
-                                            .json(err);
+            if (statusCode === 200) {  
+                    console.log("BODY:", body);                           
+                    characterId = body._id;
+                    console.log(`The id is: ${characterId}`);
+                    console.log(`Got the name, giving to API: ${postdata}`);   
+                    //insert the characterid, now that we know it
+                    postdata.character = characterId;                                          
+                    requestOptions = {
+                        url: `${apiOptions.server}${path}`,                     
+                        method: 'POST',                                         
+                        json: postdata                                          
+                    };
+                    request(                                                  
+                        requestOptions,
+                        (err, {statusCode}, body) => {
+                        if (statusCode === 201) {                            
+                                //Set the lockdown so they match up
+                                requestOptions = {
+                                    url: `${apiOptions.server}/api/users/6627e3747ca08ee65e7f8ec5/characters/${characterId}/newlockdown`,                     
+                                    method: 'PUT',                                         
+                                    json: {lockdown: body._id}                                          
+                                };
+                                console.log(JSON.stringify(requestOptions)); 
+                                request(
+                                    requestOptions,
+                                    (err, {statusCode}, body) => {
+                                        if (statusCode === 200) {
+                                            res.redirect(`/users/${userid}/characters/`); 
+                                        } else if (err) {
+                                            res
+                                                .status(200)
+                                                .json(err);
+                                        }
                                     }
-                                }
-                            );
+                                );
 
-                        } else {                                              
-                            showError(req, res, statusCode);                    
+                            } else {                                              
+                                showError(req, res, statusCode);                    
+                            }
                         }
-                    }
-                );
+                    );
             } else {  
                 console.log("ERROR:", err);                                            
                 res
