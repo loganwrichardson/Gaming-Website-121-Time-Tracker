@@ -33,21 +33,27 @@ block content
         .col-12.col-md-6
           .card.card-primary
             .card-block
-              h1.card-title Locked out 4/29/24 - 5/15/24
-              i.fas.fa-calendar
-              i.fas.fa-calendar
-              i.far.fa-calendar
-              i.far.fa-calendar
-              i.far.fa-calendar
-              i.far.fa-calendar
-              i.far.fa-calendar
-              i.far.fa-calendar   
-              i.far.fa-calendar   
-              i.far.fa-calendar
-              i.far.fa-calendar
-              i.far.fa-calendar
-              i.far.fa-calendar
-              i.far.fa-calendar                                                                                                                                                                           
+              if lockdown
+                h1.card-title Locked out 
+                h2= lockdown.startDate
+                h2= lockdown.endDate
+                h2= lockdown.reason
+                i.fas.fa-calendar
+                i.fas.fa-calendar
+                i.far.fa-calendar
+                i.far.fa-calendar
+                i.far.fa-calendar
+                i.far.fa-calendar
+                i.far.fa-calendar
+                i.far.fa-calendar   
+                i.far.fa-calendar   
+                i.far.fa-calendar
+                i.far.fa-calendar
+                i.far.fa-calendar
+                i.far.fa-calendar
+                i.far.fa-calendar  
+              else 
+                h1.card-title Available!                                                                                                                                                                         
           .card.card-primary.review-card
             .card-block
               h1.card-title Magic Items

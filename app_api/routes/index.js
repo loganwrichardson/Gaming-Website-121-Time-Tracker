@@ -19,10 +19,16 @@ router
     .get(ctrlCharacters.charactersGetFromUser)
     .post(ctrlCharacters.charactersCreate);
 router
+    .route('/users/:userid/charactersByName/:characterName')
+    .get(ctrlCharacters.charactersFindByName)
+router
     .route('/users/:userid/characters/:characterid')
     .get(ctrlCharacters.charactersReadOne)
     .put(ctrlCharacters.charactersUpdateOne)
     .delete(ctrlCharacters.charactersDeleteOne);
+router
+    .route('/users/:userid/characters/:characterid/newlockdown')
+    .put(ctrlCharacters.charactersUpdateLockdown);
 //lockdown
 router
     .route('/lockdowns/')
