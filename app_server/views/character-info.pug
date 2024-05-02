@@ -29,6 +29,13 @@ block content
                 ul= ability
               else
                 ul= noAbilities
+              form(action=`/users/6627e3747ca08ee65e7f8ec5/characters/`, method="post", role="form")
+              - if (error == "val")
+                .alert.alert-danger(role="alert") All fields required, please try again
+              .form-group.row
+                label.col-10.col-sm-2.col-form-label(for="abilities")
+                .col-12.col-sm-10
+                input#name.form-control(name="abilities")
               a.btn.btn-primary.float-right(href='/location/review/new') Add Ability
         .col-12.col-md-6
           .card.card-primary
@@ -61,7 +68,14 @@ block content
                 ul= item
               else
                 ul= noMagicItems
-              a.btn.btn-primary.float-right(href='/location/review/new') Add Item                  
+              form(action=`/users/6627e3747ca08ee65e7f8ec5/characters/`, method="post", role="form")
+              - if (error == "val")
+                .alert.alert-danger(role="alert") All fields required, please try again
+              .form-group.row
+                label.col-10.col-sm-2.col-form-label(for="magicItems")
+                .col-12.col-sm-10
+                input#name.form-control(name="magicItems")
+              a.btn.btn-primary.float-right(href='/location/review/new') Add Magic Item
               //- each facility in location.facilities
                 span.badge.badge-warning
                   i.fa.fa-check
@@ -73,6 +87,13 @@ block content
             .card-block
               h2.card-title Notes
               p.notes= character.notes 
+              form(action=`/users/6627e3747ca08ee65e7f8ec5/characters/`, method="post", role="form")
+              - if (error == "val")
+                .alert.alert-danger(role="alert") All fields required, please try again
+              .form-group.row
+                label.col-10.col-sm-2.col-form-label(for="notes")
+                .col-12.col-sm-10
+                input#name.form-control(name="notes")
               a.btn.btn-primary.float-right(href='/location/review/new') Add Notes
               //- each review in location.reviews
                 .row.review
