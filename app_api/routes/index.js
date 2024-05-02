@@ -27,6 +27,9 @@ router
     .put(ctrlCharacters.charactersUpdateOne)
     .delete(ctrlCharacters.charactersDeleteOne);
 router
+    .route('/users/:userid/characters/:characterid/addItem')
+    .put(ctrlCharacters.charactersAddItem)
+router
     .route('/users/:userid/characters/:characterid/newlockdown')
     .put(ctrlCharacters.charactersUpdateLockdown);
 //lockdown

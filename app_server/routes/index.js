@@ -11,6 +11,7 @@ router
     .get(ctrlCharacters.characterlist)
     .post(ctrlCharacters.doAddCharacter);
 router.get('/users/:userid/characters/:characterid/info', ctrlCharacters.characterInfo);
+router.post('/users/:userid/characters/:characterid/addItem', ctrlCharacters.doAddItem);
 router.get('/lockoutcalendar', ctrlCharacters.lockoutCalendar);
 router
     .route('/users/:userid/lockdown/new')

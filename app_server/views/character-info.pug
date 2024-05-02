@@ -29,14 +29,14 @@ block content
                 ul= ability
               else
                 ul= noAbilities
-              form(action=`/users/6627e3747ca08ee65e7f8ec5/characters/`, method="post", role="form")
-              - if (error == "val")
-                .alert.alert-danger(role="alert") All fields required, please try again
-              .form-group.row
-                label.col-10.col-sm-2.col-form-label(for="abilities")
-                .col-12.col-sm-10
-                input#name.form-control(name="abilities")
-              a.btn.btn-primary.float-right(href='/location/review/new') Add Ability
+              form(action=`/users/6627e3747ca08ee65e7f8ec5/characters/${character._id}/addItem`, method="post", role="form")
+                if (error == "val")
+                  .alert.alert-danger(role="alert") All fields required, please try again
+                .form-group.row
+                  label.col-10.col-sm-2.col-form-label(for="abilities")
+                  .col-12.col-sm-10
+                  input#name.form-control(name="abilities")
+                button.btn.btn-primary.float-right Add Ability
         .col-12.col-md-6
           .card.card-primary
             .card-block
@@ -68,33 +68,29 @@ block content
                 ul= item
               else
                 ul= noMagicItems
-              form(action=`/users/6627e3747ca08ee65e7f8ec5/characters/`, method="post", role="form")
-              - if (error == "val")
-                .alert.alert-danger(role="alert") All fields required, please try again
-              .form-group.row
-                label.col-10.col-sm-2.col-form-label(for="magicItems")
-                .col-12.col-sm-10
-                input#name.form-control(name="magicItems")
-              a.btn.btn-primary.float-right(href='/location/review/new') Add Magic Item
-              //- each facility in location.facilities
-                span.badge.badge-warning
-                  i.fa.fa-check
-                  | &nbsp;#{facility}
-                | &nbsp;
+              form(action=`/users/6627e3747ca08ee65e7f8ec5/characters/${character._id}/addItem`, method="post", role="form")
+                if (error == "val")
+                  .alert.alert-danger(role="alert") All fields required, please try again
+                .form-group.row
+                  label.col-10.col-sm-2.col-form-label(for="magicItems")
+                  .col-12.col-sm-10
+                  input#name.form-control(name="magicItems")
+                button.btn.btn-primary.float-right Add Magic Item
+
       .row
         .col-12
           .card.card-primary.review-card
             .card-block
               h2.card-title Notes
               p.notes= character.notes 
-              form(action=`/users/6627e3747ca08ee65e7f8ec5/characters/`, method="post", role="form")
-              - if (error == "val")
-                .alert.alert-danger(role="alert") All fields required, please try again
-              .form-group.row
-                label.col-10.col-sm-2.col-form-label(for="notes")
-                .col-12.col-sm-10
-                input#name.form-control(name="notes")
-              a.btn.btn-primary.float-right(href='/location/review/new') Add Notes
+              form(action=`/users/6627e3747ca08ee65e7f8ec5/characters/${character._id}/addItem`, method="post", role="form")
+                if (error == "val")
+                  .alert.alert-danger(role="alert") All fields required, please try again
+                .form-group.row
+                  label.col-10.col-sm-2.col-form-label(for="notes")
+                  .col-12.col-sm-10
+                  input#name.form-control(name="notes")
+                button.btn.btn-primary.float-right Set Notes
               //- each review in location.reviews
                 .row.review
                   .col-12.no-gutters.review-header
