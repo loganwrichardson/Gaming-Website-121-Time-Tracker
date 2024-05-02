@@ -12,7 +12,7 @@ block content
             each character in pcList
                 .card 
                     .card-block
-                        h4
+                        h3
                             a(href=`/users/6627e3747ca08ee65e7f8ec5/characters/${character._id}/info`)= character.name
                             small &nbsp;
                             if (character.lockoutStatus === 'Available')
@@ -21,10 +21,16 @@ block content
                                 span.badge.badge-pill.badge-lockout-unavailable= character.lockoutStatus
                             
                             span.badge.badge-pill.badge-default.float-right= character.level
-                        span.badge.badge-warning= character.hp 
-                        span.badge.badge-warning= character.body 
-                        span.badge.badge-warning= character.mind 
-                        span.badge.badge-warning= character.spirit        
+                        h5
+                            span.badge.badge-warning= "HP"
+                            span.badge.badge-warning= "Body"
+                            span.badge.badge-warning= "Mind"
+                            span.badge.badge-warning= "Spirit"
+                        h5
+                            span.badge.badge-warning= character.hp
+                            span.badge.badge-warning= character.body 
+                            span.badge.badge-warning= character.mind 
+                            span.badge.badge-warning= character.spirit        
         .col-12.col-md-4
             p.lead= sidebar.sidebarLead 
             p= sidebar.context
