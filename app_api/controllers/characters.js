@@ -8,7 +8,8 @@ const doAddCharacter = (req, res, user) => {
           .json({"message": "user not found"});
       } else {
         const {name, className, hp, body, mind, soul, lockdown, abilities, magicItems, notes} = req.body;
-        console.log(className);
+        console.log("Name");
+        console.log(name);
         const maxhp = hp;
         user.characters.push({
           name, className, hp, maxhp, body, mind, soul, lockdown, abilities, magicItems, notes
