@@ -59,7 +59,10 @@ const renderCharacter = (req, res, responseBody) => {
         sidebar: {
             context: 'Track your character\'s info.'
         },
-        character: responseBody
+        character: responseBody.character,
+        noAbilties: 'There are no abilities yet. Add your own!',
+        noMagicItems: 'There are no magical items yet. Add your own!',
+        stats: ['HP', 'Body', 'Mind', 'Spirit']
         }
     );
 }
@@ -114,6 +117,38 @@ const addLockdown = (req, res) => {
     res.render('character-lockdown-new-form', {title : 'Add Lockdown'});
 };
 
+const doAddCharacter = (req, res) => {
+    console.log('Made it to addCharacter!');
+    const userid = req.params.userid;                
+    const path = `/api/users/${userid}/characters/`; 
+    console.log(req.body);     
+    const postdata = {                                        
+        name: req.body.characterName,                                  
+        className: req.body.className,
+        hp: req.body.hp, maxhp: req.body.hp,
+        body: req.body.body, mind: req.body.mind, spirit: req.body.spirit, 
+        abilities: req.body.abilities, 
+        magicItems: req.body.magicItems, 
+        notes: req.body.flavorText                            
+    };           
+    console.log(`Giving to API: ${postdata}`);                                             
+    const requestOptions = {
+        url: `${apiOptions.server}${path}`,                     
+        method: 'POST',                                         
+        json: postdata                                          
+    };
+    request(                                                  
+        requestOptions,
+        (err, {statusCode}, body) => {
+        if (statusCode === 201) {                             
+                res.redirect(`/users/${userid}/characters/`);            
+            } else {                                              
+                showError(req, res, statusCode);                    
+            }
+        }
+    );
+};
+
 /* Get 'Add character' page */
 const addCharacter = (req, res) => {
     res.render('character-add-character-form', {title: 'Add Character'});
@@ -125,5 +160,6 @@ module.exports = {
     characterInfo,
     lockoutCalendar,
     addLockdown,
-    addCharacter
+    addCharacter,
+    doAddCharacter
 }

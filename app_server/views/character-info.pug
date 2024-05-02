@@ -5,7 +5,7 @@ extends layout
 block content
   .row.banner
     .col-12
-      h1= pageHeader.title
+      h1= character.name
   .row
     .col-12.col-lg-9
       .row
@@ -27,6 +27,8 @@ block content
               h1.card-title Abilities
               each ability in character.abilities
                 ul= ability
+              else
+                ul= noAbilities
               a.btn.btn-primary.float-right(href='/location/review/new') Add Ability
         .col-12.col-md-6
           .card.card-primary
@@ -49,8 +51,10 @@ block content
           .card.card-primary.review-card
             .card-block
               h1.card-title Magic Items
-              each item in character.magicItems 
+              each item in character.magicItems
                 ul= item
+              else
+                ul= noMagicItems
               a.btn.btn-primary.float-right(href='/location/review/new') Add Item                  
               //- each facility in location.facilities
                 span.badge.badge-warning
