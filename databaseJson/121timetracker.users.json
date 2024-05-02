@@ -26,56 +26,46 @@
       "notes": "Died due to shenanigans around a giant hammer."
     },
     {
-      "hp": 4,
-      "maxhp": 4,
-      "body": 4,
-      "mind": 4,
-      "spirit": 1,
-      "abilities": [
-        "A"
-      ],
-      "magicItems": [
-        "M"
-      ],
+      "hp": 60,
+      "maxhp": 60,
+      "body": 10,
+      "mind": 16,
+      "spirit": 20,
+      "abilities": ["Resist Type (Fire)", "RT(cold)", "RT(wind)", "RT(earth)", "RT(holy)", "RT(curse)", "RT(pyschic)", "RT(perfection)", "Magic Burst", "Summon Creature", "Detect Magic", "Foley Illusion"],
+      "magicItems": ["White Staff", "Book of Hope", "Jewel of Elements", "Rat Totem", "Kobol and Serum", "Eye of Sauron", "Bag of Holding", "Narya(The Secret Flame)", "Pipe", "Old Toby", "Fireworks"],
       "_id": {
         "$oid": "663245aaaca74ec474725c74"
       },
-      "name": "Wow",
-      "notes": "N"
+      "name": "Gandalf",
+      "notes": "Gandalf, known temporarily as the Grey and later the White, and originally named Olórin (Quenya), was an Istar (Wizard), dispatched to Middle-earth in the Third Age to combat the threat of Sauron. He joined Thorin II and his company to reclaim the Lonely Mountain from Smaug, helped form the Fellowship of the Ring to destroy the One Ring, and led the Free Peoples in the final campaign of the War of the Ring."
     },
     {
-      "hp": 5,
-      "maxhp": 5,
-      "body": 5,
-      "mind": 5,
-      "spirit": 1,
-      "abilities": [],
-      "magicItems": [
-        "Rock, Stick"
-      ],
+      "hp": 80,
+      "maxhp": 100,
+      "body": 16,
+      "mind": 14,
+      "spirit": 10,
+      "abilities": ["Cybertronian speed", "Expert Driver", "Hand-to-hand-combat", "Swordmanship", "Gyro Strike", "Blizard Storm", "Healing Factor", "Power Stream"],
+      "magicItems": ["Mystic Talisman", "Energon-axe", "Ion Blaster"],
       "_id": {
         "$oid": "6632467eaca74ec474725c7d"
       },
-      "name": "List",
-      "notes": "Hi mom!"
+      "name": "Optimus Prime",
+      "notes": "Optimus Prime is the awe-inspiring leader of the Autobot forces. Selfless and endlessly courageous, he is the complete opposite of his mortal enemy Megatron. Originally a mere civilian known as Orion Pax or Optronix, he was chosen by the Matrix of Leadership to command, the first in a number of heavy burdens he has been forced to bear. Another is his bringing of the Transformers conflict to Earth. Every casualty, human or Cybertronian weighs heavily on his spark. He does not show this side to his soldiers and never succumbs to despair. The Autobots need a decisive, charismatic leader and that is what he gives them. It was that leadership which turned the tide of the Great War."
     },
     {
-      "hp": 3,
-      "maxhp": 3,
-      "body": 3,
-      "mind": 4,
-      "spirit": 1,
-      "abilities": [
-        "Otherworldly Being"
-      ],
-      "magicItems": [
-        "Red Sash"
-      ],
+      "hp": 84,
+      "maxhp": 84,
+      "body": 5,
+      "mind": 12,
+      "spirit": 14,
+      "abilities": ["Foul Mouth", "Gaslight", "Social Manipulation", "Ventriloquism", "Multilingualism", "Summon Cuthulu"],
+      "magicItems": ["The Sword of a Thousand Truths", "The Stick of Truth", "Mr. Hanky", "Racoon Costume"],
       "_id": {
         "$oid": "6632c2a5fcf8ec72109da4f7"
       },
-      "name": "Scorch",
-      "notes": "Wow!"
+      "name": "Eric Cartman",
+      "notes": "Eric Theodore Cartman, usually referred to as just Cartman, is the main character of the South Park franchise. Carman is the loveable villain of the show, often manipulating situations to his advantage"
     }
   ]
 }]
