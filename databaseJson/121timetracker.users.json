@@ -3,25 +3,79 @@
     "$oid": "6627e3747ca08ee65e7f8ec5"
   },
   "email": "Test@gmail.com",
-  "hash": "18d3f2580ab57cd6e5ecd919ac2ebece8283c5754ef929a695775b7eca6352d590c18a…",
   "name": "Test",
-  "salt": "c04a677c73d2f2078b4bbb3356ab3286",
   "characters": [
     {
-      "class": "Wizard",
-      "hp": 15,
-      "lockdowns": [
-        {
-          "endDate": {
-            "$date": "2024-05-25T04:00:00.000Z"
-          },
-          "reason": "Dragged in to the woods by werewolves.",
-          "startDate": {
-            "$date": "2024-04-25T04:00:00.000Z"
-          }
-        }
+      "hp": 10,
+      "maxhp": 100,
+      "body": 7,
+      "mind": 4,
+      "soul": 1,
+      "abilities": [
+        "Blood for the Blood God!"
       ],
-      "name": "Holovir the Magnificent"
+      "magicItems": [
+        "Ruby Blade"
+      ],
+      "_id": {
+        "$oid": "663194f0525d13c6eccca0d5"
+      },
+      "name": "Damien Dark Prime",
+      "className": "Bloodlord",
+      "lockdown": "",
+      "notes": "Died due to shenanigans around a giant hammer."
+    },
+    {
+      "hp": 4,
+      "maxhp": 4,
+      "body": 4,
+      "mind": 4,
+      "spirit": 1,
+      "abilities": [
+        "A"
+      ],
+      "magicItems": [
+        "M"
+      ],
+      "_id": {
+        "$oid": "663245aaaca74ec474725c74"
+      },
+      "name": "Wow",
+      "notes": "N"
+    },
+    {
+      "hp": 5,
+      "maxhp": 5,
+      "body": 5,
+      "mind": 5,
+      "spirit": 1,
+      "abilities": [],
+      "magicItems": [
+        "Rock, Stick"
+      ],
+      "_id": {
+        "$oid": "6632467eaca74ec474725c7d"
+      },
+      "name": "List",
+      "notes": "Hi mom!"
+    },
+    {
+      "hp": 3,
+      "maxhp": 3,
+      "body": 3,
+      "mind": 4,
+      "spirit": 1,
+      "abilities": [
+        "Otherworldly Being"
+      ],
+      "magicItems": [
+        "Red Sash"
+      ],
+      "_id": {
+        "$oid": "6632c2a5fcf8ec72109da4f7"
+      },
+      "name": "Scorch",
+      "notes": "Wow!"
     }
   ]
 }]
