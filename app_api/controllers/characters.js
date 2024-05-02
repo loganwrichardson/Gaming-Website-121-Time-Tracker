@@ -159,7 +159,7 @@ const charactersFindByName = (req, res) => {
           } else if (err) {
             return res
               .status(404)
-              .json("No");
+              .json({"message": "Something went wrong"});
           }
           res
             .status(200)
