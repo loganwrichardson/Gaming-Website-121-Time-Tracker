@@ -6,6 +6,7 @@ const ctrlOthers = require('../controllers/others');
 
 /* Character pages */
 //The URL would need to include the user id to get any useful information
+router.get('/', ctrlCharacters.reroute);
 router
     .route('/users/:userid/characters/')
     .get(ctrlCharacters.characterlist)

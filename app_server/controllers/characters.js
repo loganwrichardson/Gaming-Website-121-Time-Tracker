@@ -265,6 +265,11 @@ const addCharacter = (req, res) => {
     res.render('character-add-character-form', {title: 'Add Character'});
 };
 
+//FOR NOW, reroute the first loaded website to the character list page
+const reroute = (req, res) => {
+    res.redirect("/users/6627e3747ca08ee65e7f8ec5/characters/");
+}
+
 
 module.exports = {
     characterlist,
@@ -274,5 +279,6 @@ module.exports = {
     addLockdown,
     addCharacter,
     doAddCharacter,
-    doAddItem
+    doAddItem,
+    reroute
 }
