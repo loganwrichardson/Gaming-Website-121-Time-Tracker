@@ -3,6 +3,7 @@ const users = mongoose.model('User');
 const lockdowns = mongoose.model('Lockdown');
 
 const doAddCharacter = (req, res, user) => {
+    console.log("doAddCharacter");
     if (!user) {
         res
           .status(404)
@@ -31,6 +32,7 @@ const doAddCharacter = (req, res, user) => {
 }
 
 const charactersCreate = (req, res) => {
+    console.log("charactersCreate");
     const userId = req.params.userid;
     if (userId) {
       users
@@ -166,6 +168,76 @@ const charactersFindByName = (req, res) => {
             .json(character[0])
         })
   });
+}
+
+const charactersAddItem = (req, res) => {
+  console.log("Made it to charactersAddItem:", req.params);
+  if (!req.params.userid || !req.params.characterid) {
+    return res
+    .status(404)
+    .json({
+      "message": "Not found, userid and characterid are both required"
+    });
+  }
+  users
+        .findById(req.params.userid)
+        .select('characters')
+        .exec((err, user) => {
+          if (!user) {
+            return res
+              .status(404)
+              .json({
+                "message": "User not found"
+              });
+          } else if (err) {
+            return res
+              .status(400)
+              .json(err);
+          }
+          if (user.characters && user.characters.length > 0) {
+            const thisCharacter = user.characters.id(req.params.characterid);
+            if (!thisCharacter) {
+              res
+                .status(404)
+                .json({
+                  "message": "Character not found"
+                });
+            } else {
+              //figures out which field to edit
+              switch(req.body.field) {
+                case 'abilities':
+                  thisCharacter.abilities.push(req.body.fieldData);
+                  break;
+                case 'magicItems':
+                  thisCharacter.magicItems.push(req.body.fieldData);
+                  break;
+                case 'notes':
+                  thisCharacter.notes = req.body.fieldData;
+                  break;
+                default:
+                  console.log("uh oh");
+              }
+              user.save((err, user) => {
+                if (err) {
+                  return res
+                    .status(404)
+                    .json(err);
+                } else {
+                  return res
+                    .status(200)
+                    .json(thisCharacter);
+                }
+              });
+            }
+          } else {
+            return res
+              .status(404)
+              .json({
+                "message": "No character to update"
+              });
+          }
+        }
+      );
 }
 
 const charactersUpdateLockdown = (req, res) => {
@@ -347,5 +419,6 @@ module.exports = {
     charactersGetFromUser,
     charactersReadOne,
     charactersUpdateOne,
-    charactersUpdateLockdown
+    charactersUpdateLockdown,
+    charactersAddItem
 }
