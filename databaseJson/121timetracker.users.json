@@ -11,6 +11,7 @@
       "body": 7,
       "mind": 4,
       "soul": 1,
+      "level" : 14,
       "abilities": [
         "Blood for the Blood God!"
       ],
@@ -20,7 +21,7 @@
       "_id": {
         "$oid": "663194f0525d13c6eccca0d5"
       },
-      "name": "Damien Dark Prime",
+      "name": "Damien Dark Prince",
       "className": "Bloodlord",
       "lockdown": "",
       "notes": "Died due to shenanigans around a giant hammer."
@@ -31,6 +32,7 @@
       "body": 10,
       "mind": 16,
       "spirit": 20,
+      "level" : 20,
       "abilities": ["Resist Type (Fire)", "RT(cold)", "RT(wind)", "RT(earth)", "RT(holy)", "RT(curse)", "RT(pyschic)", "RT(perfection)", "Magic Burst", "Summon Creature", "Detect Magic", "Foley Illusion"],
       "magicItems": ["White Staff", "Book of Hope", "Jewel of Elements", "Rat Totem", "Kobol and Serum", "Eye of Sauron", "Bag of Holding", "Narya(The Secret Flame)", "Pipe", "Old Toby", "Fireworks"],
       "_id": {
@@ -45,6 +47,7 @@
       "body": 16,
       "mind": 14,
       "spirit": 10,
+      "level" : 18,
       "abilities": ["Cybertronian speed", "Expert Driver", "Hand-to-hand-combat", "Swordmanship", "Gyro Strike", "Blizard Storm", "Healing Factor", "Power Stream"],
       "magicItems": ["Mystic Talisman", "Energon-axe", "Ion Blaster"],
       "_id": {
@@ -59,6 +62,7 @@
       "body": 5,
       "mind": 12,
       "spirit": 14,
+      "level" : 16,
       "abilities": ["Foul Mouth", "Gaslight", "Social Manipulation", "Ventriloquism", "Multilingualism", "Summon Cuthulu"],
       "magicItems": ["The Sword of a Thousand Truths", "The Stick of Truth", "Mr. Hanky", "Racoon Costume"],
       "_id": {
