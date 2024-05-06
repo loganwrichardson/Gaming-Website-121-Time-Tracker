@@ -6,11 +6,66 @@ block content
             h1= title
     .row
         .col-12.col-lg-8
-            p 
-                | Character status will be tracked here. 
-                | <br /><br />
-                | Gandalf - Not available -- Start Date  -- End Date 
-                | <br /><br />
-                | Optimus Prime - Available
-                | <br /><br />
-                | Eric Cartman - Availale. 
+            head
+                title = Table Example 
+                style. 
+                    table {
+                        border: 4mm ridge rgba(103, 220, 50, .6);
+                        //- border-collapse: collapse;
+                        table-layout: auto;
+                        width: 100%
+                    }
+                    th {
+                        border: 10px solid #00000;
+                        padding: 10x;
+                        text-align: left;
+                        font-size: 35px;
+                        color: #aaa;
+                    }
+                    td {
+                        font-size: 20px;
+                        text-align: left;
+                        color: white;
+                    }
+            body
+                h1= 'Lockout Calendar'
+                table
+                    thread 
+                        tr
+                            th Name
+                            th Lockout Status
+                            th Start Date
+                            th End Date
+                            th Reason
+                    tbody 
+                        //- each character in pcList
+                        //-     tr
+                        //-         td character.name 
+                        //-         td character.lockoutStatus 
+                        //-         td character.lockout.startDate
+                        //-         td character.lockout.endDate
+                        //-         td character.lockout.reason
+                        tr 
+                            td Gandalf
+                            td Locked Out!
+                            td May 6, 2024
+                            td May 10, 2024
+                            td Fighting the Balrog!
+                        tr
+                            td Eric Cartman
+                            td Locked Out!
+                            td April 25, 2024
+                            td June 15, 2024
+                            td Grounded!
+                        tr 
+                            td Damien Dark Prince
+                            td Available
+                            td N/A
+                            td N/A
+                            td N/A
+                        tr
+                            td Optimus Prime
+                            td Available
+                            td N/A
+                            td N/A
+                            td N/A
