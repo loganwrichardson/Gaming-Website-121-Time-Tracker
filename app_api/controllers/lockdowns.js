@@ -14,7 +14,6 @@ const lockdownsCreate = (req, res) => {
             .status(400)
             .json(err);
         } else {
-          console.log("inserted lockdown: ", lockdown);
           res
             .status(201)
             .json(lockdown);
@@ -31,7 +30,6 @@ const lockdownsListByStartTime = (req, res) => {
     })
 };
 const lockdownsReadOne = (req, res) => {
-    console.log(JSON.stringify(req)); 
     lockdown
     .findById(req.params.lockdownid)
     .exec((err, lockdownFound) => {

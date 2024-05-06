@@ -3,15 +3,12 @@ const users = mongoose.model('User');
 const lockdowns = mongoose.model('Lockdown');
 
 const doAddCharacter = (req, res, user) => {
-    console.log("doAddCharacter");
     if (!user) {
         res
           .status(404)
           .json({"message": "user not found"});
       } else {
         const {name, className, hp, body, mind, soul, lockdown, abilities, magicItems, notes} = req.body;
-        console.log("Name");
-        console.log(name);
         const maxhp = hp;
         user.characters.push({
           name, className, hp, maxhp, body, mind, soul, lockdown, abilities, magicItems, notes
@@ -32,7 +29,6 @@ const doAddCharacter = (req, res, user) => {
 }
 
 const charactersCreate = (req, res) => {
-    console.log("charactersCreate");
     const userId = req.params.userid;
     if (userId) {
       users
@@ -93,8 +89,6 @@ const charactersReadOne = (req, res) => {
             lockdowns
               .findById(character.lockdown)
               .exec((err, lockdown) => {
-                console.log("LOCKDOWN");
-                console.log(lockdown);
                 if (!character) {
                     return res
                       .status(404)
@@ -140,7 +134,7 @@ const charactersFindByName = (req, res) => {
           .status(404)
           .json({"message": "user not found"});
       } else if (err) {
-          return res
+        return res
           .status(404)
           .json(err);
       }
@@ -153,7 +147,6 @@ const charactersFindByName = (req, res) => {
           {$match: { name : req.params.characterName}}
           ])
         .exec((err, character) => {
-          console.log("Character:", character);
           if (!character.length) {
             return res
               .status(404)
@@ -171,7 +164,6 @@ const charactersFindByName = (req, res) => {
 }
 
 const charactersAddItem = (req, res) => {
-  console.log("Made it to charactersAddItem:", req.params);
   if (!req.params.userid || !req.params.characterid) {
     return res
     .status(404)
@@ -215,7 +207,7 @@ const charactersAddItem = (req, res) => {
                   thisCharacter.notes = req.body.fieldData;
                   break;
                 default:
-                  console.log("uh oh");
+                  console.log("uh oh, a field wasn't given to add to.");
               }
               user.save((err, user) => {
                 if (err) {
@@ -265,7 +257,6 @@ const charactersUpdateLockdown = (req, res) => {
         }
         if (user.characters && user.characters.length > 0) {
           const thisCharacter = user.characters.id(req.params.characterid);
-          console.log(thisCharacter);
           if (!thisCharacter) {
             res
               .status(404)
@@ -273,7 +264,6 @@ const charactersUpdateLockdown = (req, res) => {
                 "message": "Character not found"
               });
           } else {
-            console.log("BODY FROM API: ", JSON.stringify(req.body)); 
             thisCharacter.lockdown = req.body.lockdown;
             user.save((err, character) => {
               if (err) {
