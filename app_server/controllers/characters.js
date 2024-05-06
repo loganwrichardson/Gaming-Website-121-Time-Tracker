@@ -1,5 +1,5 @@
 const request = require('request');
-const apiOptions = {server: 'http://localhost:3000'}
+const apiOptions = {server: 'http://localhost:3000/api'}
 
 const decideLockdownStatus = (character) => {
     //actually do stuff to decide what the lockdown status should be
@@ -8,7 +8,6 @@ const decideLockdownStatus = (character) => {
 
 const renderCharacters = (req, res, responseBody) => {
     //Make sure the response body is in the right output
-    console.log(`responseBody: ${responseBody}`);
     responseBody.forEach(decideLockdownStatus);
     res.render('character-list', {
         title: 'Character List',
@@ -34,7 +33,7 @@ const renderCharacters = (req, res, responseBody) => {
 
 /* GET Character List */
 const characterlist = (req, res) => {
-    const path = `/api/users/${req.params.userid}/characters/`;        
+    const path = `/users/${req.params.userid}/characters/`;        
     const requestOptions = {                    
         url: `${apiOptions.server}${path}`,       
         method: 'GET',                            
@@ -52,8 +51,6 @@ const characterlist = (req, res) => {
 };
 
 const renderCharacter = (req, res, responseBody) => {
-    console.log("made it to render character!");
-    console.log(responseBody);
     //do a quick check for if the lockdown is empty
     res.render('character-info', { 
         title: '1 to 1 Time Tracker',
@@ -69,9 +66,41 @@ const renderCharacter = (req, res, responseBody) => {
         }
     );
 }
+
+const doAddItem = (req, res) => {      
+    const path = `/users/${req.params.userid}/characters/${req.params.characterid}/addItem`;   
+    let field;
+    let fieldData;
+    if (req.body.magicItems) {field = "magicItems"; fieldData = req.body.magicItems}
+    else if (req.body.abilities) {field = "abilities"; fieldData = req.body.abilities}
+    else if (req.body.notes) {field = "notes"; fieldData = req.body.notes}
+    
+    const postdata = {                        
+        field : field,
+        fieldData : fieldData
+    };                                                        
+    const requestOptions = {
+        url: `${apiOptions.server}${path}`,                     
+        method: 'PUT',                                         
+        json: postdata                                          
+    };
+    request(                                                  
+        requestOptions,
+        (err, {statusCode}, body) => {
+        if (statusCode === 200) {                             
+                res.redirect(`/users/${req.params.userid}/characters/${req.params.characterid}/info`);            
+            } else {                                              
+                res
+                    .status(statusCode)
+                    .json(err);                 
+            }
+        }
+    );
+}
+
 /* GET 'Character info' page */
 const characterInfo = (req, res) => {
-    const path = `/api/users/${req.params.userid}/characters/${req.params.characterid}`;        
+    const path = `/users/${req.params.userid}/characters/${req.params.characterid}`;        
     const requestOptions = {                    
         url: `${apiOptions.server}${path}`,       
         method: 'GET',                            
@@ -100,7 +129,9 @@ const renderLockoutCalendar = (req, res, responseBody) => {
 
 /* GET 'Lockout Calendar' page */
 const lockoutCalendar = (req, res) => {
-    const path = '/api/lockdowns';    
+
+    /* const path = '/api/lockdowns'; */    
+    const path = '/lockdowns';        
     const requestOptions = {                    
         url: `${apiOptions.server}${path}`,       
         method: 'GET',                            
@@ -117,8 +148,7 @@ const lockoutCalendar = (req, res) => {
 
 const doAddLockdown = (req, res) => {
     const userid = req.params.userid;                
-    const path = `/api/lockdowns/`; 
-    console.log(req.body);    
+    const path = `/lockdowns/`;     
     let postdata = {    
         character: "",                                    
         endDate: req.body.endDate,
@@ -128,20 +158,16 @@ const doAddLockdown = (req, res) => {
     //Find the character by name, we need the id
     const characterName = req.body.characterName;
     let characterId = 0;
-    console.log("Asking API for the name's id");
     let requestOptions = {
-        url: `${apiOptions.server}/api/users/6627e3747ca08ee65e7f8ec5/charactersByName/${req.body.characterName}`,                     
+        url: `${apiOptions.server}/users/6627e3747ca08ee65e7f8ec5/charactersByName/${req.body.characterName}`,                     
         method: 'GET',                                         
         json: postdata                                          
     };
     request(                                                  
         requestOptions,
         (err, {statusCode}, body) => {
-            if (statusCode === 200) {  
-                    console.log("BODY:", body);                           
+            if (statusCode === 200) {                            
                     characterId = body._id;
-                    console.log(`The id is: ${characterId}`);
-                    console.log(`Got the name, giving to API: ${postdata}`);   
                     //insert the characterid, now that we know it
                     postdata.character = characterId;                                          
                     requestOptions = {
@@ -155,11 +181,10 @@ const doAddLockdown = (req, res) => {
                         if (statusCode === 201) {                            
                                 //Set the lockdown so they match up
                                 requestOptions = {
-                                    url: `${apiOptions.server}/api/users/6627e3747ca08ee65e7f8ec5/characters/${characterId}/newlockdown`,                     
+                                    url: `${apiOptions.server}/users/6627e3747ca08ee65e7f8ec5/characters/${characterId}/newlockdown`,                     
                                     method: 'PUT',                                         
                                     json: {lockdown: body._id}                                          
                                 };
-                                console.log(JSON.stringify(requestOptions)); 
                                 request(
                                     requestOptions,
                                     (err, {statusCode}, body) => {
@@ -178,11 +203,10 @@ const doAddLockdown = (req, res) => {
                             }
                         }
                     );
-            } else {  
-                console.log("ERROR:", err);                                            
+            } else {                                           
                 res
                     .status(statusCode)
-                    .json(err);                    
+                    .json({"message" : "Can't find a character by that name. Make sure you're spelling it correctly."});                    
             }
         }
     );
@@ -195,8 +219,7 @@ const addLockdown = (req, res) => {
 
 const doAddCharacter = (req, res) => {
     const userid = req.params.userid;                
-    const path = `/api/users/${userid}/characters/`; 
-    console.log(req.body);     
+    const path = `/users/${userid}/characters/`;     
     const postdata = {                                        
         name: req.body.characterName,                                  
         className: req.body.className,
@@ -206,8 +229,7 @@ const doAddCharacter = (req, res) => {
         magicItems: req.body.magicItems, 
         notes: req.body.flavorText,
         lockdown: ""                  
-    };           
-    console.log(`Giving to API: ${postdata}`);                                             
+    };                                                      
     const requestOptions = {
         url: `${apiOptions.server}${path}`,                     
         method: 'POST',                                         
@@ -230,6 +252,11 @@ const addCharacter = (req, res) => {
     res.render('character-add-character-form', {title: 'Add Character'});
 };
 
+//FOR NOW, reroute the first loaded website to the character list page
+const reroute = (req, res) => {
+    res.redirect("/users/6627e3747ca08ee65e7f8ec5/characters/");
+}
+
 
 module.exports = {
     characterlist,
@@ -238,5 +265,7 @@ module.exports = {
     doAddLockdown,
     addLockdown,
     addCharacter,
-    doAddCharacter
+    doAddCharacter,
+    doAddItem,
+    reroute
 }

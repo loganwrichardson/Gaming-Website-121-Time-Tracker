@@ -15,7 +15,7 @@ block content
                         h3
                             a(href=`/users/6627e3747ca08ee65e7f8ec5/characters/${character._id}/info`)= character.name
                             small &nbsp;
-                            if (character.lockoutStatus === 'Available')
+                            if (character.lockoutStatus === Available)
                                 span.badge.badge-pill.badge-lockout-available= character.lockoutStatus
                             else
                                 span.badge.badge-pill.badge-lockout-unavailable= character.lockoutStatus
