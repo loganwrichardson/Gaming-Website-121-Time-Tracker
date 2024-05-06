@@ -90,7 +90,7 @@ const characterInfo = (req, res) => {
 };
 
 const renderLockoutCalendar = (req, res, responseBody) => {
-    res.render('lockdownCalendar', { 
+    res.render('lockout-calendar', { 
         title: '1 to 1 Time Tracker',
         description: 'Character status will be tracked here',
         lockoutList: responseBody
@@ -100,7 +100,7 @@ const renderLockoutCalendar = (req, res, responseBody) => {
 
 /* GET 'Lockout Calendar' page */
 const lockoutCalendar = (req, res) => {
-    const path = '/api/lockdowns';        
+    const path = '/api/lockdowns';    
     const requestOptions = {                    
         url: `${apiOptions.server}${path}`,       
         method: 'GET',                            
