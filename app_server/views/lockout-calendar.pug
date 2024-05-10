@@ -30,6 +30,7 @@ block content
                 h1= 'Lockout Calendar'
                 table
                     thread 
+                        
                         tr
                             th Name
                             th Lockout Status
@@ -37,34 +38,15 @@ block content
                             th End Date
                             th Reason
                     tbody 
-                        //- each character in pcList
-                        //-     tr
-                        //-         td character.name 
-                        //-         td character.lockoutStatus 
-                        //-         td character.lockout.startDate
-                        //-         td character.lockout.endDate
-                        //-         td character.lockout.reason
-                        tr 
-                            td Gandalf
-                            td Locked Out!
-                            td May 6, 2024
-                            td May 10, 2024
-                            td Fighting the Balrog!
-                        tr
-                            td Eric Cartman
-                            td Locked Out!
-                            td April 25, 2024
-                            td June 15, 2024
-                            td Grounded!
-                        tr 
-                            td Damien Dark Prince
-                            td Available
-                            td N/A
-                            td N/A
-                            td N/A
-                        tr
-                            td Optimus Prime
-                            td Available
-                            td N/A
-                            td N/A
-                            td N/A
+                        each lockdown in lockoutList
+                            tr
+                                td= lockdown.character
+                                if (lockdown.endDate < currentDate) 
+                                    td= 'Locked Out!'
+                                else 
+                                    //- td= 'Available!'
+                                    td= typeof lockdown.endDate
+                                    td= typeof currentDate
+                                td= lockdown.startDate
+                                td= lockdown.endDate 
+                                td= lockdown.reason
