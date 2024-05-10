@@ -5,6 +5,7 @@ const jwt = require('jsonwebtoken');
 const characterSchema = new mongoose.Schema({
   name : {type: String},
   className : {type: String},
+  level: {type: Number, 'default' : 1},
   hp: {type: Number, 'default': 1},
   maxhp: {type: Number, 'default': 1},
   body: {type: Number, 'default': 1},
