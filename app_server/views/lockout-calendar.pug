@@ -40,13 +40,11 @@ block content
                     tbody 
                         each lockdown in lockoutList
                             tr
-                                td= lockdown.character
-                                if (lockdown.endDate < currentDate) 
+                                td= lockdown.characterName
+                                if (lockdown.endDate > currentDate) 
                                     td= 'Locked Out!'
                                 else 
-                                    //- td= 'Available!'
-                                    td= typeof lockdown.endDate
-                                    td= typeof currentDate
-                                td= lockdown.startDate
-                                td= lockdown.endDate 
+                                    td= 'Available!'
+                                td= lockdown.startDate.toLocaleDateString()
+                                td= lockdown.endDate.toLocaleDateString()
                                 td= lockdown.reason

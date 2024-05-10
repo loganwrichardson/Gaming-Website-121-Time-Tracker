@@ -118,22 +118,22 @@ const characterInfo = (req, res) => {
   );
 };
 
-function convertToDate(lockout) {
-    lockout.startDate = Date(lockout.startDate);
-    lockout.endDate = Date(lockout.endDate);
+function convertToDate(responseBody) {
+    for (let i = 0; i < responseBody.length; i++) {
+        responseBody[i].startDate = new Date(responseBody[i].startDate);
+        responseBody[i].endDate = new Date(responseBody[i].endDate);
+    }
 }
 
 const renderLockoutCalendar = (req, res, responseBody) => {
-    console.log(responseBody);
     currentDate= new Date();
-    responseBody.forEach(convertToDate);
+    convertToDate(responseBody);
     res.render('lockout-calendar', { 
         title: '1 to 1 Time Tracker',
         description: 'Character status will be tracked here',
         lockoutList: responseBody,
         }
     );
-    console.log(currentDate);
 }
 
 /* GET 'Lockout Calendar' page */
