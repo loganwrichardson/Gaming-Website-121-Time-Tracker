@@ -24,7 +24,7 @@ const lockdownsCreate = (req, res) => {
 };
 const lockdownsListByStartTime = (req, res) => {
     lockdown.find()
-    .sort({endDate : -1})
+    .sort({endDate : 1})
     .exec((err, lockdowns) => {
       console.log(lockdowns);
         return (res)

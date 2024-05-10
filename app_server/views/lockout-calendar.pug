@@ -45,6 +45,6 @@ block content
                                     td= 'Locked Out!'
                                 else 
                                     td= 'Available!'
-                                td= lockdown.startDate.toLocaleDateString()
-                                td= lockdown.endDate.toLocaleDateString()
+                                td= lockdown.startDate.toLocaleDateString({timeZone: 'EST'})
+                                td= lockdown.endDate.toLocaleDateString({timeZone: 'EST'})
                                 td= lockdown.reason
