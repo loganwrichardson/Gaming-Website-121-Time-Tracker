@@ -1,12 +1,14 @@
 const mongoose = require('mongoose');
 const lockdown = mongoose.model('Lockdown');
+const user = mongoose.model('User');
 
 const lockdownsCreate = (req, res) => {
     lockdown.create({
         character: req.body.character,
         startDate: req.body.startDate,
         reason: req.body.reason,
-        endDate: req.body.endDate
+        endDate: req.body.endDate,
+        characterName: req.body.characterName
       },
       (err, lockdown) => {
         if (err) {
@@ -24,6 +26,7 @@ const lockdownsListByStartTime = (req, res) => {
     lockdown.find()
     .sort({endDate : -1})
     .exec((err, lockdowns) => {
+      console.log(lockdowns);
         return (res)
             .status(200)
             .json(lockdowns)
