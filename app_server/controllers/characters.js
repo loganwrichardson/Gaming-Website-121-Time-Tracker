@@ -148,15 +148,17 @@ const lockoutCalendar = (req, res) => {
 
 const doAddLockdown = (req, res) => {
     const userid = req.params.userid;                
-    const path = `/lockdowns/`;     
+    const path = `/lockdowns/`;  
+    const characterName = req.body.characterName;   
     let postdata = {    
         character: "",                                    
         endDate: req.body.endDate,
         reason: req.body.reason,
-        startDate: req.body.startDate                   
+        startDate: req.body.startDate,
+        characterName: characterName               
     };           
     //Find the character by name, we need the id
-    const characterName = req.body.characterName;
+    console.log(characterName);
     let characterId = 0;
     let requestOptions = {
         url: `${apiOptions.server}/users/6627e3747ca08ee65e7f8ec5/charactersByName/${req.body.characterName}`,                     
